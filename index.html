@@ -1,89 +1,130 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>花井海利｜ポートフォリオ</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      margin: 0;
-      background: #0f172a;
-      color: #e5e7eb;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>花井海利｜Interactive Portfolio</title>
 
-    header {
-      text-align: center;
-      padding: 80px 20px;
-      background: linear-gradient(135deg,#1e3a8a,#06b6d4);
-    }
+<style>
+body {
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:#020617;
+  color:#e2e8f0;
+  overflow-x:hidden;
+}
 
-    header h1 {
-      font-size: 3em;
-      margin: 0;
-    }
+header {
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  background: radial-gradient(circle at center,#0ea5e9,#020617);
+}
 
-    header p {
-      margin-top: 10px;
-      opacity: 0.9;
-    }
+h1 {
+  font-size:3em;
+  margin:0;
+}
 
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 40px 20px;
-    }
+.typing {
+  font-size:1.2em;
+  margin-top:10px;
+  border-right:2px solid;
+  white-space:nowrap;
+  overflow:hidden;
+  width:0;
+  animation: typing 4s steps(30,end) forwards, blink 0.7s infinite;
+}
 
-    section {
-      margin-bottom: 50px;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s ease;
-    }
+@keyframes typing {
+  from {width:0}
+  to {width:260px}
+}
 
-    section.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
+@keyframes blink {
+  50% {border-color:transparent}
+}
 
-    h2 {
-      border-left: 5px solid #06b6d4;
-      padding-left: 10px;
-    }
+.container {
+  max-width:1000px;
+  margin:auto;
+  padding:60px 20px;
+}
 
-    .card {
-      background: #1e293b;
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 15px;
-    }
+section {
+  margin-bottom:80px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s ease;
+}
 
-    ul { padding-left: 20px; }
+section.show {
+  opacity:1;
+  transform:translateY(0);
+}
 
-    .avatar {
-      width: 160px;
-      height: 160px;
-      margin: 20px auto;
-      border-radius: 50%;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    }
+.card {
+  background:#0f172a;
+  padding:25px;
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  transition: transform 0.3s;
+}
 
-    footer {
-      text-align: center;
-      padding: 30px;
-      color: #9ca3af;
-    }
-  </style>
+.card:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+h2 {
+  border-left:5px solid #38bdf8;
+  padding-left:10px;
+}
+
+ul { padding-left:20px; }
+
+.avatar {
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  margin-top:20px;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% {transform: translateY(0)}
+  50% {transform: translateY(-10px)}
+}
+
+footer {
+  text-align:center;
+  padding:40px;
+  color:#94a3b8;
+}
+
+/* 背景パーティクル */
+canvas {
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
+}
+</style>
 </head>
+
 <body>
+
+<canvas id="bg"></canvas>
 
 <header>
   <h1>花井 海利</h1>
-  <p>論理 × 実用 × 実行力</p>
+  <div class="typing">論理 × 実用 × 実行力</div>
+
   <div class="avatar">
     <svg viewBox="0 0 100 100" width="100%" height="100%">
-      <rect width="100" height="100" fill="#06b6d4"/>
+      <rect width="100" height="100" fill="#0ea5e9"/>
       <circle cx="50" cy="38" r="18" fill="#fff"/>
       <rect x="25" y="58" width="50" height="22" rx="10" fill="#fff"/>
     </svg>
@@ -95,8 +136,8 @@
 <section>
   <h2>概要</h2>
   <div class="card">
-    論理的思考と実用性を軸に行動する高校生。
-    「理解する」だけで終わらず、「使える形」に落とし込むことを重視。
+    論理的思考と実用性を重視。
+    情報を「理解」するだけでなく、「使える形」に変換することに価値を置く。
   </div>
 </section>
 
@@ -104,9 +145,9 @@
   <h2>強み</h2>
   <div class="card">
     <ul>
-      <li>・複雑な内容を構造的に整理する力</li>
-      <li>・本質を見抜く分析力（表面的な情報に流されない）</li>
-      <li>・実用性を最優先に考える意思決定</li>
+      <li>構造化思考</li>
+      <li>本質分析</li>
+      <li>実用最適化</li>
     </ul>
   </div>
 </section>
@@ -115,9 +156,9 @@
   <h2>分野</h2>
   <div class="card">
     <ul>
-      <li>・数学（確率・組合せ）</li>
-      <li>・情報処理 / データ整理</li>
-      <li>・論理設計（回路・戦略）</li>
+      <li>数学（確率・組合せ）</li>
+      <li>データ整理・分析</li>
+      <li>論理設計</li>
     </ul>
   </div>
 </section>
@@ -126,9 +167,9 @@
   <h2>活動</h2>
   <div class="card">
     <ul>
-      <li>・模擬裁判選手権（検察側）</li>
-      <li>・科学ポスター制作</li>
-      <li>・陸上競技（長距離）</li>
+      <li>模擬裁判（検察側）</li>
+      <li>科学ポスター制作</li>
+      <li>陸上競技（長距離）</li>
     </ul>
   </div>
 </section>
@@ -136,30 +177,66 @@
 <section>
   <h2>目標</h2>
   <div class="card">
-    ・全国レベルで結果を出す
-    <br>
-    ・思考力と実行力を両立する
-    <br>
-    ・知識を“使える武器”に変える
+      全国レベルで結果を出す<br>
+      思考と実行の両立<br>
+      知識を武器化
   </div>
 </section>
 
 </div>
 
 <footer>
-  © 2026 花井海利
+© 2026 花井海利
 </footer>
 
 <script>
-  const sections = document.querySelectorAll("section");
-  window.addEventListener("scroll", () => {
-    sections.forEach(sec => {
-      const top = sec.getBoundingClientRect().top;
-      if (top < window.innerHeight - 100) {
-        sec.classList.add("show");
-      }
-    });
+// スクロールアニメーション
+const sections = document.querySelectorAll("section");
+window.addEventListener("scroll",()=>{
+  sections.forEach(sec=>{
+    if(sec.getBoundingClientRect().top < window.innerHeight - 100){
+      sec.classList.add("show");
+    }
   });
+});
+
+// 背景パーティクル
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+for(let i=0;i<80;i++){
+  particles.push({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    r: Math.random()*2,
+    dx: Math.random()-0.5,
+    dy: Math.random()-0.5
+  });
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle = "#38bdf8";
+
+  particles.forEach(p=>{
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if(p.x<0||p.x>canvas.width) p.dx*=-1;
+    if(p.y<0||p.y>canvas.height) p.dy*=-1;
+
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fill();
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
 </script>
 
 </body>
